@@ -27,9 +27,9 @@ const TodoApp = () => {
     setNewTodo('');
   }, [newTodo, todos]);
 
-
-  const removeTodo = useCallback((event) => {
-    console.log("Todo removed.");
+  // updates todos by filtering removed todo.
+  const removeTodo = useCallback((todo) => (event) => {
+    updateTodos(todos.filter(t => t !== todo));
   }, [todos]);
   
   return (
@@ -52,7 +52,7 @@ const TodoApp = () => {
         {todos.map((todo, index) => (
           <li key={todo.id}>
             <span>{todo.content}</span>
-            <button onClick={removeTodo}>Remove</button>
+            <button onClick={removeTodo(todo)}>Remove</button>
           </li>
         ))}
       </ul>
