@@ -1,6 +1,6 @@
 import React, { useState, useCallback, } from "react";
 
-const TodoApp = () => {
+const App = () => {
   
   const [newTodo, setNewTodo] = useState('');
   const [todos, updateTodos] = useState([]);
@@ -40,8 +40,9 @@ const TodoApp = () => {
     updateTodos(tempTodos);
   }, [todos]);
   
+  // creates copy of array with done set to true for all todos.
   const markAll = useCallback(() => {
-    const markedTodos = todos.map(todo => { return {...todo, done: !todo.done };
+    const markedTodos = todos.map(todo => { return {...todo, done: true };
     });
     updateTodos(markedTodos);
   }, [todos]);
@@ -52,12 +53,12 @@ const TodoApp = () => {
       <h1>Todo List</h1>
       
       <form onSubmit={addTodo}>
-        <label htmlFor="newTodo">Enter a Todo:</label>
+        <label>Enter a Todo:</label>
         <input id="newTodo" name="newTodo" value={newTodo} onChange={changeTodo}/>
         <button>Add Todo</button>
       </form>
 
-      <button onClick={markAll}>Mark All Todos</button>
+      <button onClick={markAll}>Mark All Done</button>
      
       <ul>
         {todos.map((todo, index) => (
@@ -72,4 +73,4 @@ const TodoApp = () => {
   );
 };
 
-export default TodoApp;
+export default App;
