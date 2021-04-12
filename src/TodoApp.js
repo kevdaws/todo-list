@@ -40,6 +40,12 @@ const TodoApp = () => {
     updateTodos(tempTodos);
   }, [todos]);
   
+  const markAll = useCallback(() => {
+    const markedTodos = todos.map(todo => { return {...todo, done: !todo.done };
+    });
+    updateTodos(markedTodos);
+  }, [todos]);
+  
   return (
     <div>
       
@@ -47,19 +53,16 @@ const TodoApp = () => {
       
       <form onSubmit={addTodo}>
         <label htmlFor="newTodo">Enter a Todo:</label>
-        <input
-          id="newTodo"
-          name="newTodo"
-          value={newTodo}
-          onChange={changeTodo}
-        />
+        <input id="newTodo" name="newTodo" value={newTodo} onChange={changeTodo}/>
         <button>Add Todo</button>
       </form>
+
+      <button onClick={markAll}>Mark All Todos</button>
      
       <ul>
         {todos.map((todo, index) => (
           <li key={todo.id}>
-            <span>{todo.content}</span>
+            <span className={todo.done ? 'done' : ''}>{todo.content}</span>
             <input type="checkbox" checked={todo.done} onClick={markTodo(todo, index)}></input>
             <button onClick={removeTodo(todo)}>Remove</button>
           </li>

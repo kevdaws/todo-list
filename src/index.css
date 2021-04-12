@@ -15,3 +15,8 @@ li {
 li span {
   width: 50%;
 }
+
+.done {
+  color: black;
+  text-decoration: line-through;
+}
