@@ -52,6 +52,7 @@ const TodoApp = () => {
         {todos.map((todo, index) => (
           <li key={todo.id}>
             <span>{todo.content}</span>
+            <input type="checkbox" checked={todo.done}></input>
             <button onClick={removeTodo(todo)}>Remove</button>
           </li>
         ))}
@@ -59,7 +60,5 @@ const TodoApp = () => {
     </div>
   );
 };
-
-
 
 export default TodoApp;
