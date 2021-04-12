@@ -12,7 +12,7 @@ const TodoApp = () => {
 
   // do not allow empty todos.
   // each todo given unique id.
-  const addedTodo = useCallback((event) => {
+  const addTodo = useCallback((event) => {
     
     // prevent refresh.
     event.preventDefault();
@@ -28,12 +28,16 @@ const TodoApp = () => {
   }, [newTodo, todos]);
 
 
+  const removeTodo = useCallback((event) => {
+    console.log("Todo removed.");
+  }, [todos]);
+  
   return (
     <div>
       
       <h1>Todo List</h1>
       
-      <form onSubmit={addedTodo}>
+      <form onSubmit={addTodo}>
         <label htmlFor="newTodo">Enter a Todo:</label>
         <input
           id="newTodo"
@@ -48,6 +52,7 @@ const TodoApp = () => {
         {todos.map((todo, index) => (
           <li key={todo.id}>
             <span>{todo.content}</span>
+            <button onClick={removeTodo}>Remove</button>
           </li>
         ))}
       </ul>
