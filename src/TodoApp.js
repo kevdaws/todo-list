@@ -21,6 +21,7 @@ const TodoApp = () => {
       {
         id: todos.length ? todos[0].id + 1 : 1,
         content: newTodo,
+        done: false
       },
       ...todos
     ]);
@@ -30,6 +31,13 @@ const TodoApp = () => {
   // updates todos by filtering removed todo.
   const removeTodo = useCallback((todo) => (event) => {
     updateTodos(todos.filter(t => t !== todo));
+  }, [todos]);
+
+  const markTodo = useCallback((todo, index) => (event) => {
+    //console.log("Todo Marked");
+    const tempTodos = [todos];
+    tempTodos.splice(index, 1, { ...todo, done: !todo.done });
+    updateTodos(tempTodos);
   }, [todos]);
   
   return (
@@ -52,7 +60,7 @@ const TodoApp = () => {
         {todos.map((todo, index) => (
           <li key={todo.id}>
             <span>{todo.content}</span>
-            <input type="checkbox" checked={todo.done}></input>
+            <input type="checkbox" checked={todo.done} onClick={markTodo(todo, index)}></input>
             <button onClick={removeTodo(todo)}>Remove</button>
           </li>
         ))}
