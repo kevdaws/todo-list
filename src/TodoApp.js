@@ -1,6 +1,6 @@
 import React, { useState, useCallback, } from "react";
 
-const Header = () => {
+const TodoApp = () => {
   
   const [newTodo, setNewTodo] = useState('');
   const [todos, updateTodos] = useState([]);
@@ -57,4 +57,4 @@ const Header = () => {
 
 
 
-export default Header;
+export default TodoApp;
